@@ -1,0 +1,15 @@
+body {
+	margin: 0;
+    padding: 0;
+}
+
+
+$colours: ('red', 'green', 'blue');
+
+@for $index from 1 through length($colours) {
+	$colour: nth($colours, $index);
+	.#{$colour} {
+		z-index: $index;
+		background: $colour;
+	}
+}

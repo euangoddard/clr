@@ -1,0 +1,12 @@
+{
+  "browser": true,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "laxbreak": true,
+  "predef": ["require", "module", "exports"],
+  "quotmark": "single",
+  "undef": true,
+  "unused": true,
+  "globalstrict": true
+}
