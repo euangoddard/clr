@@ -43,7 +43,8 @@ gulp.task('sass', function () {
 
   return gulp.src('./src/scss/**/*.scss')
     .pipe($.sass({
-      outputStyle: output_style
+      outputStyle: output_style,
+      includePaths: 'node_modules/mathsass/dist'
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: [
     	'last 2 versions'
