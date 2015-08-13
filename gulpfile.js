@@ -32,7 +32,6 @@ gulp.task('build-js', function () {
     .on('error', $.util.log.bind($.util, 'Browserify Error'))
     .pipe(source('bundle.js'))
     .pipe(buffer())
-    .pipe($.ngAnnotate())
     .pipe($.if(CONFIG.is_release, $.uglify()))
     .pipe(gulp.dest('./dist/js'));
 });
@@ -43,8 +42,7 @@ gulp.task('sass', function () {
 
   return gulp.src('./src/scss/**/*.scss')
     .pipe($.sass({
-      outputStyle: output_style,
-      includePaths: 'node_modules/mathsass/dist'
+      outputStyle: output_style
     }).on('error', $.sass.logError))
     .pipe($.autoprefixer({browsers: [
     	'last 2 versions'

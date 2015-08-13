@@ -1,54 +1,26 @@
-@import 'math';
-
 body {
 	margin: 0;
     padding: 0;
+	overflow: hidden;
+	transition: background-color 1s ease-out;
 }
 
-.circles-outer {
+.container {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
-	width: 100vw;
+	align-content: center;
 	height: 100vh;
-}
-
-.circles-inner {
-	position: relative;
-	width: 90vw;
-	height: 90vw;
-}
-
-$circle-size: 10vw;
-
-.circle {
-	position: absolute;
-	width: $circle-size;
-	height: $circle-size;
-	margin-left: -0.5 * $circle-size;
-	margin-top: -0.5 * $circle-size;
-	border-radius: 50%;
-}
-
-@media (orientation: landscape) {
-	.circles-outer {
-		flex-direction: column;
-	}
 	
-	.circles-inner {
-		width: 90vh;
-		height: 90vh;
-	}
-	
-	$circle-size: 10vh;
-	.circle {
-		width: $circle-size;
-		height: $circle-size;
-		margin-left: -0.5 * $circle-size;
-		margin-top: -0.5 * $circle-size;
+	svg {
+		width: 100%;
+		
+		@media (orientation: landscape) {
+			width: auto;
+			height: 100vh;
+			margin: 0 auto;
+		}
 	}
 }
-
 
 $colours:
 	('red' #F44336)
@@ -63,22 +35,12 @@ $colours:
 	('black' #000)
 	('white' #fff)
 ;
-$colours-count: length($colours);
 
-@for $index from 1 through $colours-count {
-	$colour: nth($colours, $index);
+@each $colour in $colours {
 	$colour-name: nth($colour, 1);
 	$colour-value: nth($colour, 2);
-	.circle-#{$colour-name} {
+	.#{$colour-name} {
+		fill: $colour-value;
 		background: $colour-value;
-		left: 50vw + 40vw * cos($index / $colours-count * 360deg); 
-		top:  50vw + 40vw * sin($index / $colours-count * 360deg);
-	}
-	
-	@media (orientation: landscape) {
-		.circle-#{$colour-name} {
-			left: 50vh + 40vh * cos($index / $colours-count * 360deg); 
-			top:  50vh + 40vh * sin($index / $colours-count * 360deg);
-		}
 	}
 }
