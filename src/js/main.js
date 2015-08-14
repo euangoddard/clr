@@ -17,4 +17,5 @@ var select_circle = function (event) {
 	var class_list = document.body.classList;
 	class_list.remove.apply(class_list, to_array(class_list));
 	class_list.add.apply(class_list, to_array(circle.classList));
+	document.querySelector('p').textContent = to_array(circle.classList).join(' ');
 };
