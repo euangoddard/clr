@@ -1,5 +1,11 @@
+var Buffer = require('buffer').Buffer;
+
+var File = require('vinyl');
 var assign = require('lodash.assign');
+var buffer = require('vinyl-buffer');
 var template = require('lodash.template');
+var source = require('vinyl-source-stream');
+
 
 var COLOUR_NAMES = ['red', 'pink', 'purple', 'blue', 'green', 'yellow', 'orange', 'brown', 'grey', 'black', 'white'];
 
@@ -13,7 +19,15 @@ var IMAGE_CENTRE = IMAGE_SIZE / 2;
 
 
 var generate_svg = function () {
-	
+	var svg_xml = generate_svg_content();
+	var svg_file = new File({contents: new Buffer(svg_xml)});
+	var svg_pipe = svg_file
+		.pipe(source('colours.svg'))
+		.pipe(buffer())
+	return svg_pipe;
+};
+
+var generate_svg_content = function () {
 	var xml_parts = [SVG_TEMPLATE({size: IMAGE_SIZE})];
 	
 	COLOUR_NAMES.forEach(function (colour_name, index) {
@@ -24,7 +38,8 @@ var generate_svg = function () {
 	});
 	
 	xml_parts.push('</svg>');
-	console.log(xml_parts.join('\n'));
+	var xml = xml_parts.join('\n');
+	return xml;
 };
 
 
@@ -37,4 +52,4 @@ var get_circle_centre = function (index) {
 };
 
 
-generate_svg();
+module.exports = generate_svg;

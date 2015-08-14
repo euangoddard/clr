@@ -11,12 +11,16 @@ var stylish = require('jshint-stylish');
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 
+// Gulp helpers
+var svg = require('./gulp/svg');
+
 
 var CONFIG = {
   is_release: !!argv.release
 };
 
 var reload = browserSync.reload;
+
 
 gulp.task('clean', function () {
   del.sync(['./dist']);
@@ -58,7 +62,13 @@ gulp.task('build-html', ['build-js', 'sass'], function () {
     './dist/css/**/*.css'
   ], {read: false});
 
-  return target.pipe($.inject(sources, {ignorePath: '/dist/'}))
+  return target
+    .pipe($.inject(sources, {ignorePath: '/dist/'}))
+    .pipe($.inject(svg(), {
+      transform: function (file_path, file) {
+        return file.contents.toString('utf8');
+      }
+    }))
     .pipe(gulp.dest('./dist'));
 });
 
