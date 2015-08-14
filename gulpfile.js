@@ -69,6 +69,7 @@ gulp.task('build-html', ['build-js', 'sass'], function () {
         return file.contents.toString('utf8');
       }
     }))
+    .pipe($.if(CONFIG.is_release, $.minifyHtml()))
     .pipe(gulp.dest('./dist'));
 });
 
