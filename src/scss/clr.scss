@@ -1,65 +1,73 @@
 body {
-	margin: 0;
+    margin: 0;
     padding: 0;
-	overflow: hidden;
-	transition: background-color 1s ease-out;
-	font-family: sans;
+    overflow: hidden;
+    transition: background-color 1s ease-out;
+    font-family: sans;
 }
 
 .container {
-	display: flex;
-	flex-direction: row;
-	align-content: center;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	z-index: 2;
-	
-	& > * {
-		width: 100vw;
-		
-		@media (orientation: landscape) {
-			width: auto;
-			height: 100vh;
-			margin: 0 auto;
-		}
-	}
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    
+    & > * {
+        width: 100vw;
+        
+        @media (orientation: landscape) {
+            width: auto;
+            height: 100vh;
+            margin: 0 auto;
+        }
+    }
 }
 .text-container {
-	z-index: 1;
-	
-	p {
-		font-size: 7vw;
-		line-height: 100vh;
-		text-align: center;
-	}
+    z-index: 1;
+    
+    p {
+        font-size: 7vw;
+        line-height: 100vh;
+        text-align: center;
+    }
 }
 
 $colours:
-	('red' #F44336)
-	('pink' #E91E63)
-	('purple' #9C27B0)
-	('blue' #2196F3)
-	('green' #4CAF50)
-	('yellow' #FFEB3B)
-	('orange' #FF5722)
-	('brown' #795548)
-	('grey' #9E9E9E)
-	('black' #000)
-	('white' #fff)
+    ('red' #F44336)
+    ('pink' #E91E63)
+    ('purple' #9C27B0)
+    ('blue' #2196F3)
+    ('green' #4CAF50)
+    ('yellow' #FFEB3B)
+    ('orange' #FF5722)
+    ('brown' #795548)
+    ('grey' #9E9E9E)
+    ('black' #000)
+    ('white' #fff)
 ;
 
 @each $colour in $colours {
-	$colour-name: nth($colour, 1);
-	$colour-value: nth($colour, 2);
-	.#{$colour-name} {
-		fill: $colour-value;
-		background: $colour-value;
-	}
+    $colour-name: nth($colour, 1);
+    $colour-value: nth($colour, 2);
+    .#{$colour-name} {
+        fill: $colour-value;
+        background: $colour-value;
+        
+        & & {
+            cursor: default;
+        }
+    }
 }
 
 .black {
-	color: #fff;
+    color: #fff;
+}
+
+circle {
+    cursor: pointer;
 }
