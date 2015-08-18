@@ -32,7 +32,7 @@ var generate_svg_content = function () {
 	
 	COLOUR_NAMES.forEach(function (colour_name, index) {
 		var circle_centre = get_circle_centre(index);
-		var circle_context = assign({r: 50, css_class: colour_name}, circle_centre);
+		var circle_context = assign({r: 75, css_class: colour_name}, circle_centre);
 		var circle_xml = CIRCLE_TEMPLATE(circle_context);
 		xml_parts.push(circle_xml);
 	});
@@ -46,8 +46,9 @@ var generate_svg_content = function () {
 var get_circle_centre = function (index) {
 	var colours_count = COLOUR_NAMES.length;
 	var angle = Math.PI * 2 * index / colours_count;
-	var x = IMAGE_CENTRE + 0.45 * IMAGE_SIZE * Math.cos(angle);
-	var y = IMAGE_CENTRE + 0.45 * IMAGE_SIZE * Math.sin(angle);
+	var centre_displacement = 0.4 * IMAGE_SIZE;
+	var x = IMAGE_CENTRE + centre_displacement * Math.cos(angle);
+	var y = IMAGE_CENTRE + centre_displacement * Math.sin(angle);
 	return {x: x, y: y};
 };
 

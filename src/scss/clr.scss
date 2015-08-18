@@ -2,8 +2,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    transition: background-color 1s ease-out;
-    font-family: sans;
+    transition: background-color 0.5s ease-out;
+    font-family: sans-serif;
 }
 
 .container {
@@ -19,6 +19,8 @@ body {
     
     & > * {
         width: 100vw;
+        height: auto;
+        margin: 0;
         
         @media (orientation: landscape) {
             width: auto;
@@ -31,9 +33,11 @@ body {
     z-index: 1;
     
     p {
-        font-size: 7vw;
+        font-size: 10vh;
         line-height: 100vh;
         text-align: center;
+        height: 100vh;
+        user-select: none;
     }
 }
 
@@ -44,7 +48,7 @@ $colours:
     ('blue' #2196F3)
     ('green' #4CAF50)
     ('yellow' #FFEB3B)
-    ('orange' #FF5722)
+    ('orange' #FF9800)
     ('brown' #795548)
     ('grey' #9E9E9E)
     ('black' #000)
@@ -57,6 +61,7 @@ $colours:
     .#{$colour-name} {
         fill: $colour-value;
         background: $colour-value;
+        color: #fff;
         
         & & {
             cursor: default;
@@ -64,10 +69,16 @@ $colours:
     }
 }
 
-.black {
-    color: #fff;
+.white {
+    color: #000;
 }
 
 circle {
     cursor: pointer;
+    transform-origin: center;
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    &:hover {
+        transform: scale(1.2);
+    }
 }

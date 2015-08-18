@@ -6,10 +6,15 @@ var to_array = require('lodash.toarray');
 
 var speech = require('./speech');
 
+var EVENTS = ['touchstart', 'click'];
+
 domready(function () {
     var circles = document.querySelectorAll('circle');
     each(circles, function (circle) {
-        circle.addEventListener('click', select_circle, false);
+        each(EVENTS, function (event_name) {
+            circle.addEventListener(event_name, select_circle, false);
+        });
+        
     });
     speech.language = 'en-GB';
 });
