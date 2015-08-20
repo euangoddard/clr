@@ -4,9 +4,12 @@ var domready = require('domready');
 var each = require('lodash.foreach');
 var to_array = require('lodash.toarray');
 
+var favicon = require('./favicon');
 var speech = require('./speech');
 
+
 var EVENTS = ['touchstart', 'click'];
+
 
 domready(function () {
     var circles = document.querySelectorAll('circle');
@@ -17,6 +20,7 @@ domready(function () {
         
     });
     speech.language = 'en-GB';
+    speech.say('');
 });
 
 
@@ -35,4 +39,5 @@ var select_circle = function (event) {
     var colour_name_label = document.getElementById('colour-name');
     colour_name_label.textContent = colour_name;
     speech.say(colour_name);
+    favicon.colour(colour_name);
 };
