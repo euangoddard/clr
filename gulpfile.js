@@ -16,7 +16,7 @@ var svg = require('./gulp/svg');
 
 
 var CONFIG = {
-  is_release: !!argv.release
+  is_release: !!argv.release || process.argv[2] === 'gh-pages' 
 };
 
 var reload = browserSync.reload;
@@ -99,6 +99,11 @@ gulp.task('serve', ['default'], function () {
   });
 
   gulp.watch(['./src/**/*', './gulpfile.js'], ['build', reload]);
+});
+
+
+gulp.task('gh-pages', ['build'], function (done) {
+  return gulp.src('./dist/**/*').pipe($.ghPages());
 });
 
 
