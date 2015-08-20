@@ -74,14 +74,20 @@ gulp.task('build-html', ['build-js', 'sass'], function () {
 });
 
 
-gulp.task('lint', function() {
-  return gulp.src(['./src/**/*.js', '../server.js'])
+gulp.task('static', function () {
+  gulp.src('./src/static/**/*')
+    .pipe(gulp.dest('./dist'));
+})
+
+
+gulp.task('lint', function () {
+  return gulp.src(['./src/**/*.js'])
     .pipe($.jshint())
     .pipe($.jshint.reporter(stylish));
 });
 
 
-gulp.task('build', ['build-html']);
+gulp.task('build', ['static', 'build-html']);
 
 
 gulp.task('serve', ['default'], function () {
